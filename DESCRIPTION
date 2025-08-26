@@ -2,21 +2,22 @@ Package: kbretrieveR
 Title: AWS Bedrock Knowledge Base Retrieval for R
 Version: 0.0.0.9000
 Authors@R: 
-    person("Lazarus", "Alvarez", 
-           email = "you@example.com", 
+    person("Lazarus", "Alvarez",
+           email = "lazarusalvarez3@gmail.com",
            role = c("aut", "cre"))
-Description: Provides a thin R interface for AWS Bedrock Knowledge Bases 
-    using the 'paws' SDK. Includes helpers for retrieval-only calls, 
-    retrieval-and-generate (RAG), and a unified client that can combine 
-    KB context with an 'ellmer' chat object. Designed for simple RAG flows 
-    returning tidy tibbles with answers, citations, and raw responses.
+Description: Thin interface to AWS Bedrock Knowledge Bases from R.
+    Provides retrieval-only calls and tidy results (tibbles) for RAG-style
+    workflows. Works across AWS regions and supports endpoint overrides.
 License: MIT + file LICENSE
-URL: https://github.com/<your-user>/retrieveR
-BugReports: https://github.com/<your-user>/retrieveR/issues
-Depends: 
+URL: https://github.com/lazasaurus-ai/kbretrieveR
+BugReports: https://github.com/lazasaurus-ai/kbretrieveR/issues
+Depends:
     R (>= 4.1)
 Imports:
-    paws.machine.learning,
+    httr,
+    jsonlite,
+    aws.signature,
+    digest,
     tibble,
     dplyr,
     rlang
@@ -25,6 +26,6 @@ Suggests:
     ellmer,
     covr
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, r6 = TRUE)
 RoxygenNote: 7.3.2
 Config/testthat/edition: 3
