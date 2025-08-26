@@ -1,0 +1,30 @@
+Package: kbretrieveR
+Title: AWS Bedrock Knowledge Base Retrieval for R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Lazarus", "Alvarez", 
+           email = "you@example.com", 
+           role = c("aut", "cre"))
+Description: Provides a thin R interface for AWS Bedrock Knowledge Bases 
+    using the 'paws' SDK. Includes helpers for retrieval-only calls, 
+    retrieval-and-generate (RAG), and a unified client that can combine 
+    KB context with an 'ellmer' chat object. Designed for simple RAG flows 
+    returning tidy tibbles with answers, citations, and raw responses.
+License: MIT + file LICENSE
+URL: https://github.com/<your-user>/retrieveR
+BugReports: https://github.com/<your-user>/retrieveR/issues
+Depends: 
+    R (>= 4.1)
+Imports:
+    paws.machine.learning,
+    tibble,
+    dplyr,
+    rlang
+Suggests:
+    testthat (>= 3.0.0),
+    ellmer,
+    covr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Config/testthat/edition: 3
