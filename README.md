@@ -9,7 +9,7 @@ Thin interface for AWS Bedrock Knowledge Bases from R.
 
 ```r
 # from devtools / remotes
-remotes::install_github("your-user/kbretrieveR")
+remotes::install_github("lazasaurus-ai/kbretrieveR")
 ```
 
 ## Background Info
@@ -26,7 +26,7 @@ library(kbretreiveR)
 
 # Create a client (replace with your KB ID & region)
 client <- KBClient$new(
-  kb_id = "1234ABCE",
+  kb_id = "1234ABCE", # OR Sys.getenv("AWS_KB_ID")
   region = "us-east-1",
   chat_client = ellmer::chat_aws_bedrock(
     model = "anthropic.claude-3-5-sonnet-20240620-v1:0"
