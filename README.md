@@ -59,16 +59,14 @@ AWS_KB_ID="1234ABCE"
 ⚙️ How It Works
 ```mermaid
 flowchart TD
-  A[User Question] -->|ask| K{{kbretrieveR (orchestrator)}}
+  A[User Question] -->|ask| K[kbretrieveR orchestrator]
 
-  K -->|retrieve| KB[(Bedrock Knowledge Base)]
+  K -->|retrieve| KB[Bedrock Knowledge Base]
   KB -->|top-k chunks| K
-  K -->|compose prompt (question + context)| E[ellmer Chat Client]
+  K -->|compose prompt| E[ellmer Chat Client]
   E -->|LLM completion| F[Final LLM Response]
 
-  %% Optional visual emphasis
   subgraph kbretrieveR
-    direction TB
     K
   end
 ```
