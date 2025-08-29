@@ -27,18 +27,21 @@ library(kbretreiveR)
 # Create a client (replace with your KB ID & region)
 client <- KBClient$new(
   kb_id = "1234ABCE", # OR Sys.getenv("AWS_KB_ID")
-  region = "us-east-1",
+  region = "us-east-1", # OR Sys.getenv("AWS_REGION")
   chat_client = ellmer::chat_aws_bedrock(
     model = "anthropic.claude-3-5-sonnet-20240620-v1:0"
   )
 )
 
-# Retrieve docs
-docs <- client$retrieve("Tell me about my companies new projects?")
+# Retrieve docs - will print tibble table of retrieved context chunks from AWS KB
+client$retrieve("Tell me about my companies new projects?")
 
 # Chat with context injected
-reply <- client$chat("Summarize in 3 bullet points.")
-cat(reply)
+client$chat("Summarize the companies new projects in 3 bullet points.")
+
+# Limit sources to only those with highest relevance and append the sources
+client$retrieve("Tell me about my companies new projects?", number_of_results=3)
+client$chat("Summarize in 3 bullet points", number_of_results=3, append_sources = TRUE)
 ```
 
 ### Configuration
@@ -56,13 +59,16 @@ AWS_KB_ID="1234ABCE"
 ⚙️ How It Works
 ```mermaid
 flowchart TD
-    A[User Question] --> B[kbretreiveR]
-    B --> C[Bedrock Knowledge Base]
-    C --> D[Retrieved Context]
-    D --> E[ellmer Chat Client]
-    E --> F[Final LLM Response]
+  A[User Question] -->|ask| K{{kbretrieveR (orchestrator)}}
 
-    subgraph kbretreiveR
-    B
-    end
+  K -->|retrieve| KB[(Bedrock Knowledge Base)]
+  KB -->|top-k chunks| K
+  K -->|compose prompt (question + context)| E[ellmer Chat Client]
+  E -->|LLM completion| F[Final LLM Response]
+
+  %% Optional visual emphasis
+  subgraph kbretrieveR
+    direction TB
+    K
+  end
 ```
