@@ -19,6 +19,8 @@
 #' @field default_snippet_chars Maximum characters per snippet (integer, default `1500`).
 #' @field include_metadata Logical; include basic metadata when building prompts (default `TRUE`).
 #' @field verbose Logical; print progress messages (default `TRUE`).
+#' @export
+#' @exportClass KBClient 
 KBClient <- R6::R6Class(
   "KBClient",
   public = list(

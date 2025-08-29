@@ -36,8 +36,7 @@ so you can call \verb{$retrieve()} and \verb{$chat()} without repeating paramete
 
 \item{\code{include_metadata}}{Logical; include basic metadata when building prompts (default \code{TRUE}).}
 
-\item{\code{verbose}}{Logical; print progress messages (default \code{TRUE}).
-Initialize a KBClient}
+\item{\code{verbose}}{Logical; print progress messages (default \code{TRUE}).}
 }
 \if{html}{\out{</div>}}
 }
